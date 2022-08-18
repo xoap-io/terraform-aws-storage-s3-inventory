@@ -8,32 +8,23 @@ variable "name" {
 }
 variable "include_object_versions" {
   type                      = string
-  default                   = "All"
   description               = "(Required) Object versions to include in the inventory list. Valid values: All, Current."
 }
 variable "frequency" {
   type                      = string
-  default                   = "daily"
-  description               = "(Required) Specifies how frequently inventory results are produced. Valid values"
+  description               = "(Required) Specifies how frequently inventory results are produced. Valid values Daily, Weekly."
 }
-variable "bucket_destination" {
-  type                      = string
-  description               = "(Required) The S3 bucket configuration where inventory results are published (documented below)."
-}
-
 variable "bucket_arn" {
   type                      = string
   description               = "(Required) The Amazon S3 bucket ARN of the destination."
 }
 variable "format" {
   type                      = string
-  default                   = "ORC"
   description               = "(Required) Specifies the output format of the inventory results. Can be CSV, ORC or Parquet."
 }
 variable "account_id" {
   type                      = string
   description               = "(Optional) The ID of the account that owns the destination bucket. Recommended to be set to prevent problems if the destination bucket ownership changes."
-
 }
 variable "bucket_prefix" {
   type                      = string
@@ -50,16 +41,15 @@ variable "key_id" {
 variable "sse_s3" {
   type                      = string
   description               = "(Optional) Specifies to use server-side encryption with Amazon S3-managed keys (SSE-S3) to encrypt the inventory file."
-
 }
 variable "enabled" {
   type                      = bool
-  default                   = true
   description               = "(Optional, Default: true) Specifies whether the inventory is enabled or disabled."
+  default                   = true
 }
-variable "filter" {
+variable "prefix" {
   type                      = string
-  description               = "(Optional) Specifies an inventory filter. The inventory only includes objects that meet the filter's criteria (documented below)."
+  description               = "(Optional) The prefix that an object must have to be included in the inventory results."
 }
 variable "optional_fields" {
   type                      = map(list)
